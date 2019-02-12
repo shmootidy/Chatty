@@ -27,8 +27,14 @@ class App extends Component {
           id: "woof"
         }
       ]
-    }
-  };
+    };
+    this.handleNewMessage = this.handleNewMessage.bind(this);
+  }
+
+  handleNewMessage(newMessage) {
+    console.log('fromApp', newMessage);
+    return <div>yes</div>
+  }
 
   componentDidMount() {
     console.log("componentDidMount <App />");
@@ -48,7 +54,7 @@ class App extends Component {
       <div>
         <Nav />
         <MessageList messages={this.state.messages} />
-        <ChatBar currentUser={this.state.currentUser} />
+        <ChatBar currentUser={this.state.currentUser} addNewMessage={this.handleNewMessage} />
       </div>
     );
   }
