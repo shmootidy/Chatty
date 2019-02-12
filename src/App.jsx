@@ -32,8 +32,9 @@ class App extends Component {
   }
 
   handleNewMessage(newMessage) {
-    console.log('fromApp', newMessage);
-    return <div>yes</div>
+    const oldMessages = this.state.messages;
+    const newMessages = [...oldMessages, newMessage];
+    this.setState({ messages: newMessages });
   }
 
   componentDidMount() {
