@@ -25,7 +25,6 @@ class App extends Component {
     this.socket.send(JSON.stringify(newMessage));
 
     this.socket.onmessage = (message) => {
-      console.log(JSON.parse(message.data));
       message = JSON.parse(message.data);
       const newMessages = [...this.state.messages, message];
       this.setState({ messages: newMessages });

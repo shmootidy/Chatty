@@ -13,11 +13,16 @@ const uuid4 = require('uuid/v4'); // v4 is random, general (I think)
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
+
   ws.on('message', (message) => {
     const newMessage = JSON.parse(message);
     newMessage.id = uuid4();
     console.log(`User ${newMessage.username} said ${newMessage.content}`);
-    ws.send(JSON.stringify(newMessage));
+
+    console.log(wss.clients.size);
+    wss.clients.forEach(client => {
+      client.send(JSON.stringify(newMessage));
+    })
   })
 
   ws.on('close', () => console.log('Client disconnected'));
