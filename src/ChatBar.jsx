@@ -6,7 +6,6 @@ class ChatBar extends Component {
     const newMessage = {
       username: e.target.elements.username.value,
       content: e.target.elements.newMessage.value,
-      id: e.target.elements.newMessage.value
     };
     this.props.addNewMessage(newMessage);
     e.target.elements.newMessage.value = "";
