@@ -15,7 +15,7 @@ wss.on('connection', (ws) => {
   console.log('Client connected');
   ws.on('message', (message) => {
     const newMessage = JSON.parse(message);
-    console.log(newMessage);
+    newMessage.id = uuid4();
     console.log(`User ${newMessage.username} said ${newMessage.content}`);
   })
 
