@@ -24,11 +24,6 @@ class App extends Component {
   handleNewMessage(newMessage) {
     this.socket.send(JSON.stringify(newMessage));
 
-    this.socket.onmessage = (message) => {
-      message = JSON.parse(message.data);
-      const newMessages = [...this.state.messages, message];
-      this.setState({ messages: newMessages });
-    }
   }
 
   componentDidMount() {
@@ -36,6 +31,13 @@ class App extends Component {
       console.log('Connected to server.');
     }
     console.log("componentDidMount <App />");
+
+    this.socket.onmessage = (message) => {
+      message = JSON.parse(message.data);
+      console.log(message);
+      const newMessages = [...this.state.messages, message];
+      this.setState({ messages: newMessages });
+    }
   }
 
   render() {

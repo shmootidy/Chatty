@@ -1,5 +1,6 @@
 const express = require('express');
 const SocketServer = require('ws').Server;
+const WebSocket = require('ws');
 
 const PORT = 3001;
 
@@ -19,9 +20,10 @@ wss.on('connection', (ws) => {
     newMessage.id = uuid4();
     console.log(`User ${newMessage.username} said ${newMessage.content}`);
 
-    console.log(wss.clients.size);
     wss.clients.forEach(client => {
-      client.send(JSON.stringify(newMessage));
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify(newMessage));
+      }
     })
   })
 
