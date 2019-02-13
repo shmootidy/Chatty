@@ -23,8 +23,12 @@ class App extends Component {
 
   handleNewMessage(newMessage) {
     this.socket.send(JSON.stringify(newMessage));
+
     this.socket.onmessage = (message) => {
-      console.log(message);
+      console.log(JSON.parse(message.data));
+      message = JSON.parse(message.data);
+      const newMessages = [...this.state.messages, message];
+      this.setState({ messages: newMessages });
     }
   }
 
