@@ -1,6 +1,15 @@
 import React, {Component} from 'react';
 
 class ChatBar extends Component {
+
+  onKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const newUsername = e.target.value;
+      console.log(newUsername);
+    }
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
     const newMessage = {
@@ -15,8 +24,15 @@ class ChatBar extends Component {
     return (
       <footer className="chatbar">
         <form onSubmit={this.onSubmit}>
-          <input className="chatbar-username" defaultValue={this.props.currentUser.name} name="username" />
-          <input className="chatbar-message" placeholder="Type a message and hit ENTER" name="newMessage" />
+          <input
+            className="chatbar-username"
+            defaultValue={this.props.currentUser.name ? ( this.props.currentUser.name ) : ( "Anonymous" )}
+            name="username"
+            onKeyPress={this.onKeyPress} />
+          <input
+            className="chatbar-message"
+            placeholder="Type a message and hit ENTER"
+            name="newMessage" />
           <input type="submit" />
         </form>
       </footer>
