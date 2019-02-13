@@ -33,12 +33,8 @@ class App extends Component {
   }
 
   handleNewMessage(newMessage) {
-    const oldMessages = this.state.messages;
-    const newMessages = [...oldMessages, newMessage];
-    this.setState({ messages: newMessages });
+    this.socket.send(JSON.stringify(newMessage));
   }
-
-
 
   componentDidMount() {
     this.socket.onopen = () => {
