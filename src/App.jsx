@@ -23,6 +23,9 @@ class App extends Component {
 
   handleNewMessage(newMessage) {
     this.socket.send(JSON.stringify(newMessage));
+    this.socket.onmessage = (message) => {
+      console.log(message);
+    }
   }
 
   componentDidMount() {
@@ -31,7 +34,6 @@ class App extends Component {
     }
     console.log("componentDidMount <App />");
   }
-
 
   render() {
     return (
