@@ -13,6 +13,7 @@ const Nav = () => {
 class App extends Component {
   constructor(props) {
     super(props);
+    this.socket = new WebSocket('ws://localhost:3001');
     this.state = {
       currentUser: {name: "Bob"},
       messages: [
@@ -37,9 +38,10 @@ class App extends Component {
     this.setState({ messages: newMessages });
   }
 
+
+
   componentDidMount() {
-    let socket = new WebSocket('ws://localhost:3001');
-    socket.onopen = () => {
+    this.socket.onopen = () => {
       console.log('Connected to server.');
     }
 
