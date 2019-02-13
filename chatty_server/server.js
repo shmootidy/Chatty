@@ -17,6 +17,7 @@ wss.on('connection', (ws) => {
     const newMessage = JSON.parse(message);
     newMessage.id = uuid4();
     console.log(`User ${newMessage.username} said ${newMessage.content}`);
+    ws.send(JSON.stringify(newMessage));
   })
 
   ws.on('close', () => console.log('Client disconnected'));
