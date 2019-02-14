@@ -1,6 +1,19 @@
 import React, {Component} from 'react';
 
 class ChatBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ''
+    };
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange = (e) => {
+    const text = e.target.value;
+    this.setState({ input: text });
+    console.log(text);
+  }
 
   onKeyPress = (e) => {
     if (e.key === "Enter") {
@@ -15,10 +28,10 @@ class ChatBar extends Component {
     e.preventDefault();
     const newMessage = {
       username: this.props.username,
-      content: e.target.elements.newMessage.value,
+      content: this.state.input,
     };
     this.props.addNewMessage(newMessage);
-    e.target.elements.newMessage.value = "";
+    this.setState({ input: '' });
   }
 
   render() {
@@ -33,7 +46,9 @@ class ChatBar extends Component {
           <input
             className="chatbar-message"
             placeholder="Type a message and hit ENTER"
-            name="newMessage" />
+            name="newMessage"
+            value={this.state.input}
+            onChange={this.onChange} />
           <input type="submit" />
         </form>
       </footer>
