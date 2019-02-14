@@ -1,6 +1,6 @@
 const express = require('express');
 const SocketServer = require('ws').Server;
-const WebSocket = require('ws');
+const WebSocket = require('ws'); // this is here purely so the conditional statement for posting new messages works
 
 const PORT = 3001;
 

@@ -6,14 +6,15 @@ class ChatBar extends Component {
     if (e.key === "Enter") {
       e.preventDefault();
       const newUsername = e.target.value;
-      console.log(newUsername);
+      this.props.changeUsername(newUsername);
+      e.target.value = newUsername;
     }
   }
 
   onSubmit = (e) => {
     e.preventDefault();
     const newMessage = {
-      username: e.target.elements.username.value,
+      username: this.props.username,
       content: e.target.elements.newMessage.value,
     };
     this.props.addNewMessage(newMessage);
@@ -26,7 +27,7 @@ class ChatBar extends Component {
         <form onSubmit={this.onSubmit}>
           <input
             className="chatbar-username"
-            defaultValue={this.props.currentUser.name ? ( this.props.currentUser.name ) : ( "Anonymous" )}
+            defaultValue={this.props.username ? ( this.props.username ) : ( "Anonymous" )}
             name="username"
             onKeyPress={this.onKeyPress} />
           <input
