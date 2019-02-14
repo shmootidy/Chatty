@@ -3,16 +3,13 @@ import ChatBar from './ChatBar.jsx';
 import MessageList from './MessageList.jsx';
 
 const Nav = (props) => {
-  let userCount = '';
-  if (props.userCount > 1) {
-    userCount = props.userCount + " users online";
-  }  else {
-    userCount = props.userCount + " user online";
-  }
+
+  const userString = props.userCount > 1 ? (" users") : (" user");
+
   return (
     <nav className="navbar">
       <a href="/" className="navbar-brand">Chatty</a>
-      <span className="userCount">{userCount}</span>
+      <span className="userCount">{props.userCount + userString + " online"}</span>
     </nav>
   )
 }
