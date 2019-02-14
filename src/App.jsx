@@ -27,8 +27,14 @@ class App extends Component {
   }
 
   handleNewUsername(newUsername) {
+    const oldName = this.state.currentUser.name ? (this.state.currentUser.name) : "Anonymous";
+    const notification = {
+      type: 'postNotification',
+      content: `${oldName} has changed their name to ${newUsername}`
+    };
     newUsername = {name: newUsername}
     this.setState({ currentUser: newUsername });
+    this.socket.send(JSON.stringify(notification));
   }
 
   componentDidMount() {
