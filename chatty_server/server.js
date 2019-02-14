@@ -25,18 +25,20 @@ wss.on('connection', (ws) => {
 
   ws.on('message', (message) => {
     message = JSON.parse(message);
-    if (message.type === "postMessage") {
-      const newMessage = message;
-      newMessage.id = uuid4();
-      newMessage.type = "incomingMessage";
-      console.log(`User ${newMessage.username} said ${newMessage.content}`);
-      wss.broadcast(JSON.stringify(newMessage));
-   }
-    if (message.type === "postNotification") {
-      const notification = message;
-      notification.id = uuid4();
-      notification.type = "incomingNotification";
-      wss.broadcast(JSON.stringify(notification));
+    switch(message.type) {
+      case "postMessage":
+        const newMessage = message;
+        newMessage.id = uuid4();
+        newMessage.type = "incomingMessage";
+        console.log(`User ${newMessage.username} said ${newMessage.content}`);
+        wss.broadcast(JSON.stringify(newMessage));
+        break;
+      case "postNotification":
+        const notification = message;
+        notification.id = uuid4();
+        notification.type = "incomingNotification";
+        wss.broadcast(JSON.stringify(notification));
+        break;
     }
   });
 
