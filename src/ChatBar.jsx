@@ -34,11 +34,6 @@ class ChatBar extends Component {
     }
   }
 
-  onSubmit = (e) => {
-    e.preventDefault();
-
-  }
-
   render() {
     return (
       <footer className="chatbar">
