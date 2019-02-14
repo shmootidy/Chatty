@@ -2,10 +2,17 @@ import React, {Component} from 'react';
 import ChatBar from './ChatBar.jsx';
 import MessageList from './MessageList.jsx';
 
-const Nav = () => {
+const Nav = (props) => {
+  let userCount = '';
+  if (props.userCount > 1) {
+    userCount = props.userCount + " users online";
+  }  else {
+    userCount = props.userCount + " user online";
+  }
   return (
     <nav className="navbar">
       <a href="/" className="navbar-brand">Chatty</a>
+      <span className="userCount">{userCount}</span>
     </nav>
   )
 }
@@ -38,15 +45,22 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.socket.onopen = () => {
+    this.socket.onopen = (data) => {
       console.log('Connected to server.');
+      console.log(data);
     }
     console.log('componentDidMount <App />');
 
     this.socket.onmessage = (message) => {
       message = JSON.parse(message.data);
-      const newMessages = [...this.state.messages, message];
-      this.setState({ messages: newMessages });
+
+      if (message.type === "userCount") {
+        const userCount = message.count;
+        this.setState({ userCount });
+      } else {
+        const newMessages = [...this.state.messages, message];
+        this.setState({ messages: newMessages });
+      }
     }
 
   }
@@ -54,7 +68,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav userCount={this.state.userCount} />
         <MessageList messages={this.state.messages} />
         <ChatBar
           username={this.state.currentUser.name}

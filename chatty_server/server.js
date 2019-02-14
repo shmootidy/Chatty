@@ -22,6 +22,11 @@ wss.broadcast = function broadcast(data) {
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
+  const userCount = {
+    type: "userCount",
+    count: wss.clients.size
+  };
+  wss.broadcast(JSON.stringify(userCount));
 
   ws.on('message', (message) => {
     message = JSON.parse(message);
@@ -44,7 +49,14 @@ wss.on('connection', (ws) => {
     }
   });
 
-  ws.on('close', () => console.log('Client disconnected'));
+  ws.on('close', () => {
+    console.log('Client disconnected');
+    const userCount = {
+      type: "userCount",
+      count: wss.clients.size
+    };
+    wss.broadcast(JSON.stringify(userCount));
+  });
 });
 
 
