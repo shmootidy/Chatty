@@ -23,6 +23,7 @@ wss.broadcast = function broadcast(data) {
 wss.on('connection', (ws) => {
   console.log('Client connected');
   const userCount = {
+    id: uuid4(),
     type: "userCount",
     count: wss.clients.size
   };
@@ -52,6 +53,7 @@ wss.on('connection', (ws) => {
   ws.on('close', () => {
     console.log('Client disconnected');
     const userCount = {
+      id: uuid4(),
       type: "userCount",
       count: wss.clients.size
     };
