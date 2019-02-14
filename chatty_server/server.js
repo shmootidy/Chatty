@@ -29,16 +29,16 @@ wss.on('connection', (ws) => {
 
     switch(message.type) {
 
-      case "postMessage":
+      case 'postMessage':
         const newMessage = message;
-        newMessage.type = "incomingMessage";
+        newMessage.type = 'incomingMessage';
         console.log(`User ${newMessage.username} said ${newMessage.content}`);
         wss.broadcast(JSON.stringify(newMessage));
         break;
 
-      case "postNotification":
+      case 'postNotification':
         const notification = message;
-        notification.type = "incomingNotification";
+        notification.type = 'incomingNotification';
         wss.broadcast(JSON.stringify(notification));
         break;
     }

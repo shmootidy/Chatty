@@ -41,7 +41,7 @@ class App extends Component {
     this.socket.onopen = () => {
       console.log('Connected to server.');
     }
-    console.log("componentDidMount <App />");
+    console.log('componentDidMount <App />');
 
     this.socket.onmessage = (message) => {
       message = JSON.parse(message.data);

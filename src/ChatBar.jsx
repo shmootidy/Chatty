@@ -5,7 +5,7 @@ class ChatBar extends Component {
     super(props);
     this.state = {
       input: '',
-      username: this.props.username ? ( this.props.username ) : ( "Anonymous" )
+      username: this.props.username ? ( this.props.username ) : ( 'Anonymous' )
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -16,18 +16,18 @@ class ChatBar extends Component {
   }
 
   onKeyPress = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       e.preventDefault();
 
       switch(e.target.name) {
-        case "username":
+        case 'username':
           const newUsername = e.target.value;
           this.setState({ username: newUsername });
           this.props.changeUsername(newUsername);
           break;
-        case "newMessage":
+        case 'newMessage':
           const newMessage = {
-            type: "postMessage",
+            type: 'postMessage',
             username: this.state.username,
             content: this.state.input,
           };
@@ -35,7 +35,7 @@ class ChatBar extends Component {
           this.setState({ input: '' });
           break;
         default:
-          throw new Error("Something went funky with your submission.");
+          throw new Error('Something went funky with your submission.');
       }
     }
   }
