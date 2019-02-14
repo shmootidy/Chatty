@@ -18,40 +18,42 @@ class ChatBar extends Component {
   onKeyPress = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      const newUsername = e.target.value;
-      this.setState({ username: newUsername });
-      this.props.changeUsername(newUsername);
+      if (e.target.name === "username") {
+        const newUsername = e.target.value;
+        this.setState({ username: newUsername });
+        this.props.changeUsername(newUsername);
+      } else {
+        const newMessage = {
+        type: "postMessage",
+          username: this.state.username,
+          content: this.state.input,
+          };
+        this.props.addNewMessage(newMessage);
+        this.setState({ input: '' });
+      }
     }
   }
 
   onSubmit = (e) => {
     e.preventDefault();
-    const newMessage = {
-      type: "postMessage",
-      username: this.state.username,
-      content: this.state.input,
-    };
-    this.props.addNewMessage(newMessage);
-    this.setState({ input: '' });
+
   }
 
   render() {
     return (
       <footer className="chatbar">
-        <form onSubmit={this.onSubmit}>
-          <input
-            className="chatbar-username"
-            defaultValue={this.state.username}
-            name="username"
-            onKeyPress={this.onKeyPress} />
-          <input
-            className="chatbar-message"
-            placeholder="Type a message and hit ENTER"
-            name="newMessage"
-            value={this.state.input}
-            onChange={this.onChange} />
-          <input type="submit" />
-        </form>
+        <input
+          className="chatbar-username"
+          defaultValue={this.state.username}
+          name="username"
+          onKeyPress={this.onKeyPress} />
+        <input
+          className="chatbar-message"
+          placeholder="Type a message and hit ENTER"
+          name="newMessage"
+          value={this.state.input}
+          onChange={this.onChange}
+          onKeyPress={this.onKeyPress} />
       </footer>
     );
   }
