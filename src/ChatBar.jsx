@@ -4,7 +4,8 @@ class ChatBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: ''
+      input: '',
+      username: this.props.username ? ( this.props.username ) : ( "Anonymous" )
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -25,7 +26,7 @@ class ChatBar extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const newMessage = {
-      username: this.props.username,
+      username: this.state.username,
       content: this.state.input,
     };
     this.props.addNewMessage(newMessage);
@@ -38,7 +39,7 @@ class ChatBar extends Component {
         <form onSubmit={this.onSubmit}>
           <input
             className="chatbar-username"
-            defaultValue={this.props.username ? ( this.props.username ) : ( "Anonymous" )}
+            defaultValue={this.state.username}
             name="username"
             onKeyPress={this.onKeyPress} />
           <input
