@@ -34,6 +34,7 @@ wss.on('connection', (ws) => {
    }
     if (message.type === "postNotification") {
       const notification = message;
+      notification.id = uuid4();
       notification.type = "incomingNotification";
       wss.broadcast(JSON.stringify(notification));
     }
@@ -41,3 +42,8 @@ wss.on('connection', (ws) => {
 
   ws.on('close', () => console.log('Client disconnected'));
 });
+
+
+
+
+
