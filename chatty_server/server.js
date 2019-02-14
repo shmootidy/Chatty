@@ -18,6 +18,7 @@ wss.on('connection', (ws) => {
   ws.on('message', (message) => {
     const newMessage = JSON.parse(message);
     newMessage.id = uuid4();
+    newMessage.type = "incomingMessage";
     console.log(`User ${newMessage.username} said ${newMessage.content}`);
 
     wss.clients.forEach(client => {

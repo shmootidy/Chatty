@@ -26,6 +26,7 @@ class ChatBar extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const newMessage = {
+      type: "postMessage",
       username: this.state.username,
       content: this.state.input,
     };
