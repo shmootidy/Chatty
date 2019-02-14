@@ -12,7 +12,6 @@ class ChatBar extends Component {
   onChange = (e) => {
     const text = e.target.value;
     this.setState({ input: text });
-    console.log(text);
   }
 
   onKeyPress = (e) => {
@@ -20,7 +19,6 @@ class ChatBar extends Component {
       e.preventDefault();
       const newUsername = e.target.value;
       this.props.changeUsername(newUsername);
-      e.target.value = newUsername;
     }
   }
 
