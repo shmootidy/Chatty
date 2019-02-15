@@ -91,7 +91,6 @@ class App extends Component {
         />
         <MessageList
           messages={this.state.messages}
-          color={this.state.messages.color}
         />
         <ChatBar
           username={this.state.currentUser.name}

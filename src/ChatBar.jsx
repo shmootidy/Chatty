@@ -32,7 +32,7 @@ class ChatBar extends Component {
             type: 'postMessage',
             username: this.state.username,
             content: this.state.input,
-            color: this.props.color,
+            color: this.props.userColor,
           };
           this.props.addNewMessage(newMessage);
           this.setState({ input: '' });
