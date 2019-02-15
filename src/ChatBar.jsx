@@ -42,8 +42,8 @@ class ChatBar extends Component {
         default:
           console.log('Something went funky with your submission.')
       }
-    }
 
+    }
   }
 
   render() {
@@ -63,7 +63,6 @@ class ChatBar extends Component {
           onKeyPress={this.onKeyPress} />
       </footer>
     )
-
   }
 
 }
