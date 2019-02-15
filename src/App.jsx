@@ -54,14 +54,18 @@ class App extends Component {
 
       switch(message.type) {
 
-        case 'userCount':
-          const userCount = message.count;
+        case 'logOnLogOff':
+          let userCount = message.count;
           const status = this.state.userCount > userCount ? ('left'):('joined');
           const notification = {
             type: 'postNotification',
-            content: `A user has ${status} the chat. ${message.n}`
+            content: `A user has ${status} the chat.`
           };
           this.socket.send(JSON.stringify(notification));
+          break;
+
+        case 'userCount':
+          userCount = message.count;
           this.setState({ userCount });
           break;
 
