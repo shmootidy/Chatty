@@ -32,7 +32,7 @@ class App extends Component {
   }
 
   handleNewUsername(newUsername) {
-    const oldName = this.state.currentUser.name ? (this.state.currentUser.name) : "Anonymous";
+    const oldName = this.state.currentUser.name ? (this.state.currentUser.name) : 'Anonymous';
     const notification = {
       type: 'postNotification',
       content: `${oldName} has changed their name to ${newUsername}`
@@ -53,9 +53,8 @@ class App extends Component {
       message = JSON.parse(message.data);
 
       if (message.type === 'userCount') {
-
         const userCount = message.count;
-        const status = this.state.userCount > userCount ? ("left"):("joined");
+        const status = this.state.userCount > userCount ? ('left'):('joined');
         const notification = {
           type: 'postNotification',
           content: `A user has ${status} the chat.`
