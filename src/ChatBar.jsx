@@ -23,7 +23,11 @@ class ChatBar extends Component {
       switch(e.target.name) {
 
         case 'username':
-          const newUsername = e.target.value
+          const newUsername = {
+            type: 'postNotification',
+            username: e.target.value,
+            content: `A user has ${status} the chat.`
+          }
           this.setState({ username: newUsername })
           this.props.changeUsername(newUsername)
           break
