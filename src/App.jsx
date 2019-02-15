@@ -54,6 +54,11 @@ class App extends Component {
 
       switch(message.type) {
 
+        case 'userColor':
+          let userColor = message.color;
+          this.setState({ userColor });
+          break;
+
         case 'logOnLogOff':
           let userCount = message.count;
           const status = this.state.userCount > userCount ? ('left'):('joined');

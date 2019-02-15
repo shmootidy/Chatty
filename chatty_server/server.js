@@ -22,8 +22,19 @@ wss.broadcast = function broadcast(data) {
   });
 };
 
+let count = 0;
+
 wss.on('connection', (ws) => {
   console.log('Client connected');
+  let n = count++;
+  if (n > 3) {
+    n = 0
+  };
+  const userColor = {
+    type: "userColor",
+    color: colorArray[n]
+  };
+  ws.send(JSON.stringify(userColor));
 
   const userCount = {
     type: "userCount",
@@ -66,9 +77,11 @@ wss.on('connection', (ws) => {
       type: "logOnLogOff",
       count: wss.clients.size
     };
-    const clientsArray = Array.from(wss.clients)
+    const clientsArray = Array.from(wss.clients);
     const lastClient = clientsArray[clientsArray.length - 1];
-    lastClient.send(JSON.stringify(logOnLogOff));
+    if (lastClient) {
+      lastClient.send(JSON.stringify(logOnLogOff));
+    }
 
     const userCount = {
       type: "userCount",
