@@ -40,7 +40,7 @@ class ChatBar extends Component {
           break
 
         default:
-          throw new Error('Something went funky with your submission.')
+          console.log('Something went funky with your submission.')
       }
     }
 
