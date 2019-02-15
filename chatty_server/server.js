@@ -22,14 +22,9 @@ wss.broadcast = function broadcast(data) {
   });
 };
 
-let count = 0;
-
 wss.on('connection', (ws) => {
   console.log('Client connected');
-  let n = count++;
-  if (n > 3) {
-    n = 0
-  };
+  let n = Math.floor(Math.random() * 4);
   const userColor = {
     type: "userColor",
     color: colorArray[n]
