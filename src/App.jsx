@@ -13,6 +13,7 @@ const Nav = (props) => {
 }
 
 class App extends Component {
+
   constructor(props) {
     super(props)
     this.socket = new WebSocket('ws://localhost:3001')
@@ -42,7 +43,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.socket.onopen = (data) => {
+    this.socket.onopen = (event) => {
       console.log('Connected to server.')
     }
     console.log('componentDidMount <App />')
@@ -78,6 +79,9 @@ class App extends Component {
           const newMessages = [...this.state.messages, message]
           this.setState({ messages: newMessages })
           break
+
+        default:
+          console.log('Message type is invalid' + message.type)
       }
     }
   }

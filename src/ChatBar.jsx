@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
 class ChatBar extends Component {
+
   constructor(props) {
     super(props)
     this.state = {
@@ -42,6 +43,7 @@ class ChatBar extends Component {
           throw new Error('Something went funky with your submission.')
       }
     }
+
   }
 
   render() {
@@ -61,7 +63,9 @@ class ChatBar extends Component {
           onKeyPress={this.onKeyPress} />
       </footer>
     )
+
   }
+
 }
 
 export default ChatBar
