@@ -28,7 +28,8 @@ class ChatBar extends Component {
             username: e.target.value,
             content: `A user has ${status} the chat.`
           }
-          this.setState({ username: newUsername })
+          const username = newUsername.username
+          this.setState({ username })
           this.props.changeUsername(newUsername)
           break
 

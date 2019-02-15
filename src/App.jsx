@@ -33,11 +33,12 @@ class App extends Component {
 
   handleNewUsername(newUsername) {
     const oldName = this.state.currentUser.name ? (this.state.currentUser.name) : 'Anonymous'
+    const newName = newUsername.username
     const notification = {
       type: 'postNotification',
-      content: `${oldName} has changed their name to ${newUsername}`
+      content: `${oldName} has changed their name to ${newName}`
     }
-    newUsername = {name: newUsername}
+    newUsername = {name: newName}
     this.setState({ currentUser: newUsername })
     this.socket.send(JSON.stringify(notification))
   }
