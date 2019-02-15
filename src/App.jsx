@@ -88,7 +88,7 @@ class App extends Component {
     return (
       <div>
         <Nav userCount={this.state.userCount} />
-        <MessageList messages={this.state.messages} />
+        <MessageList messages={this.state.messages} color={this.state.userColor} />
         <ChatBar
           username={this.state.currentUser.name}
           color={this.state.userColor}

@@ -52,7 +52,6 @@ wss.on('connection', (ws) => {
   ws.on('message', (message) => {
     message = JSON.parse(message);
     message.id = uuid4();
-    console.log(message);
 
     switch(message.type) {
 
