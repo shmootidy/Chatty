@@ -5,13 +5,13 @@ A real-time chat API built using Websocket and React.
 ## To Install
   1. Fork and clone this repo
   2. Install necessary dependencies:
-     1. in root directory `npm i --save`
-     2. in chatty_server directory `npm i --save`
-     * *(Both the app server and the websocket server have their own dependencies)*
+     - in root directory `npm i --save`
+     - in chatty_server directory `npm i --save`
+     - *(Both the app server and the websocket server have their own dependencies)*
   3. Start both servers:
-     1. in root directory `npm start`
-     2. in chatty_server directory `node server.js`
-     * *(You will need two Terminal windows open to run the two servers)*
+     - in root directory `npm start`
+     - in chatty_server directory `node server.js`
+     - *(You will need two Terminal windows open to run the two servers)*
   4. Go to [localhost://3000](localhost://3000) and get Chatty!
 
 ## Features
