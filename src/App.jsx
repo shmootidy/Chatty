@@ -74,6 +74,9 @@ class App extends Component {
 
         case 'incomingMessage':
         case 'incomingNotification':
+          if (checkForImg(message)){
+            console.log("image!");
+          }
           const newMessages = [...this.state.messages, message];
           this.setState({ messages: newMessages });
           break;
@@ -103,12 +106,23 @@ class App extends Component {
     );
   }
 }
+
 export default App;
 
-/*
-function checkForImg(input){
-  const [jpg, png, gif] = []
-  return output;
+/* HELPER FUNCTION */
+
+function checkForImg(message){
+  const imageTypes = [/.jpg$/, /.png$/, /.gif$/];
+  imageTypes.forEach(type => {
+    if(type.test(message.content)) {
+      message.type = 'incomingImage';
+    }
+  })
+  return message;
 }
 
-*/
+
+
+
+
+
