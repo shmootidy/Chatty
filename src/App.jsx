@@ -100,3 +100,10 @@ class App extends Component {
 }
 export default App;
 
+/*
+function checkForImg(input){
+  const [jpg, png, gif] = []
+  return output;
+}
+
+*/
