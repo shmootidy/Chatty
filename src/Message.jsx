@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 
 export default class Message extends Component {
   render(){
@@ -14,14 +14,14 @@ export default class Message extends Component {
             {postedUsername}
             <span className="message-content">{this.props.message.content}</span>
           </div>
-        );
+        )
 
       case 'incomingNotification':
       return (
         <div className="notification">
           <span className="notification-content">{this.props.message.content}</span>
         </div>
-      );
+      )
 
       case 'incomingImage':
         return (
@@ -29,7 +29,7 @@ export default class Message extends Component {
             {postedUsername}
             <img src={this.props.message.content} style={{maxWidth: "60vw"}} />
           </div>
-        );
+        )
     }
   }
 }

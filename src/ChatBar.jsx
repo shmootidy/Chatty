@@ -1,31 +1,31 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 
 class ChatBar extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       input: '',
       username: this.props.username ? ( this.props.username ) : ( 'Anonymous' ),
-    };
-    this.onChange = this.onChange.bind(this);
+    }
+    this.onChange = this.onChange.bind(this)
   }
 
   onChange = (e) => {
-    const text = e.target.value;
-    this.setState({ input: text });
+    const text = e.target.value
+    this.setState({ input: text })
   }
 
   onKeyPress = (e) => {
     if (e.key === 'Enter') {
-      e.preventDefault();
+      e.preventDefault()
 
       switch(e.target.name) {
 
         case 'username':
-          const newUsername = e.target.value;
-          this.setState({ username: newUsername });
-          this.props.changeUsername(newUsername);
-          break;
+          const newUsername = e.target.value
+          this.setState({ username: newUsername })
+          this.props.changeUsername(newUsername)
+          break
 
         case 'newMessage':
           const newMessage = {
@@ -33,13 +33,13 @@ class ChatBar extends Component {
             username: this.state.username,
             content: this.state.input,
             color: this.props.userColor,
-          };
-          this.props.addNewMessage(newMessage);
-          this.setState({ input: '' });
-          break;
+          }
+          this.props.addNewMessage(newMessage)
+          this.setState({ input: '' })
+          break
 
         default:
-          throw new Error('Something went funky with your submission.');
+          throw new Error('Something went funky with your submission.')
       }
     }
   }
@@ -60,8 +60,8 @@ class ChatBar extends Component {
           onChange={this.onChange}
           onKeyPress={this.onKeyPress} />
       </footer>
-    );
+    )
   }
 }
 
-export default ChatBar;
+export default ChatBar
