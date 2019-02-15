@@ -7,7 +7,7 @@ const Nav = (props) => {
   const userString = props.userCount > 1 ? (" users") : (" user");
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" style={{backgroundColor: props.color}}>
       <a href="/" className="navbar-brand">Chatty</a>
       <span className="userCount">{props.userCount + userString + " online"}</span>
     </nav>
@@ -87,8 +87,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav userCount={this.state.userCount} />
-        <MessageList messages={this.state.messages} color={this.state.messages.color} />
+        <Nav
+          userCount={this.state.userCount}
+          color={this.state.userColor} />
+        <MessageList
+          messages={this.state.messages}
+          color={this.state.messages.color} />
         <ChatBar
           username={this.state.currentUser.name}
           color={this.state.userColor}
