@@ -57,7 +57,6 @@ class App extends Component {
         case 'userColor':
           let userColor = message.color;
           this.setState({ userColor });
-          console.log(this.state);
           break;
 
         case 'logOnLogOff':
