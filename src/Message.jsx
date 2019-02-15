@@ -27,7 +27,7 @@ export default class Message extends Component {
         return (
           <div className="image">
             {postedUsername}
-            <img src={this.props.message.content} style={{maxHeight: "60vw"}} />
+            <img src={this.props.message.content} style={{maxWidth: "60vw"}} />
           </div>
         );
     }
