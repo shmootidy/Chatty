@@ -5,7 +5,7 @@ class ChatBar extends Component {
     super(props);
     this.state = {
       input: '',
-      username: this.props.username ? ( this.props.username ) : ( 'Anonymous' )
+      username: this.props.username ? ( this.props.username ) : ( 'Anonymous' ),
     };
     this.onChange = this.onChange.bind(this);
   }

@@ -3,11 +3,9 @@ import ChatBar from './ChatBar.jsx';
 import MessageList from './MessageList.jsx';
 
 const Nav = (props) => {
-
   const userString = props.userCount > 1 ? (" users") : (" user");
-
   return (
-    <nav className="navbar" style={{backgroundColor: props.color}}>
+    <nav className="navbar" style={{backgroundColor: props.userColor}}>
       <a href="/" className="navbar-brand">Chatty</a>
       <span className="userCount">{props.userCount + userString + " online"}</span>
     </nav>
@@ -89,15 +87,19 @@ class App extends Component {
       <div>
         <Nav
           userCount={this.state.userCount}
-          color={this.state.userColor} />
+          userColor={this.state.userColor}
+        />
         <MessageList
           messages={this.state.messages}
-          color={this.state.messages.color} />
+          color={this.state.messages.color}
+        />
         <ChatBar
           username={this.state.currentUser.name}
           color={this.state.userColor}
+
           addNewMessage={this.handleNewMessage}
-          changeUsername={this.handleNewUsername} />
+          changeUsername={this.handleNewUsername}
+          />
       </div>
     );
   }
