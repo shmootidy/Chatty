@@ -52,6 +52,7 @@ wss.on('connection', (ws) => {
   ws.on('message', (message) => {
     message = JSON.parse(message);
     message.id = uuid4();
+    console.log(message);
 
     switch(message.type) {
 
@@ -72,23 +73,21 @@ wss.on('connection', (ws) => {
 
   ws.on('close', () => {
     console.log('Client disconnected');
+      if (wss.clients.size){
+        const logOnLogOff = {
+          type: "logOnLogOff",
+          count: wss.clients.size
+        };
+        const clientsArray = Array.from(wss.clients);
+        const lastClient = clientsArray[clientsArray.length - 1];
+        lastClient.send(JSON.stringify(logOnLogOff));
 
-    const logOnLogOff = {
-      type: "logOnLogOff",
-      count: wss.clients.size
-    };
-    const clientsArray = Array.from(wss.clients);
-    const lastClient = clientsArray[clientsArray.length - 1];
-    if (lastClient) {
-      lastClient.send(JSON.stringify(logOnLogOff));
-    }
-
-    const userCount = {
-      type: "userCount",
-      count: wss.clients.size
-    };
-    wss.broadcast(JSON.stringify(userCount));
-
+        const userCount = {
+          type: "userCount",
+          count: wss.clients.size
+        };
+        wss.broadcast(JSON.stringify(userCount));
+      }
     });
 });
 

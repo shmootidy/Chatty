@@ -21,6 +21,7 @@ class App extends Component {
     this.state = {
       userCount: 0,
       currentUser: {name: ''},
+      userColor: '',
       messages: []
     };
     this.handleNewMessage = this.handleNewMessage.bind(this);
@@ -45,7 +46,6 @@ class App extends Component {
   componentDidMount() {
     this.socket.onopen = (data) => {
       console.log('Connected to server.');
-      console.log(data);
     }
     console.log('componentDidMount <App />');
 
@@ -91,6 +91,7 @@ class App extends Component {
         <MessageList messages={this.state.messages} />
         <ChatBar
           username={this.state.currentUser.name}
+          color={this.state.userColor}
           addNewMessage={this.handleNewMessage}
           changeUsername={this.handleNewUsername} />
       </div>

@@ -20,20 +20,24 @@ class ChatBar extends Component {
       e.preventDefault();
 
       switch(e.target.name) {
+
         case 'username':
           const newUsername = e.target.value;
           this.setState({ username: newUsername });
           this.props.changeUsername(newUsername);
           break;
+
         case 'newMessage':
           const newMessage = {
             type: 'postMessage',
             username: this.state.username,
             content: this.state.input,
+            color: this.props.color,
           };
           this.props.addNewMessage(newMessage);
           this.setState({ input: '' });
           break;
+
         default:
           throw new Error('Something went funky with your submission.');
       }
