@@ -57,6 +57,7 @@ class App extends Component {
         case 'userColor':
           let userColor = message.color;
           this.setState({ userColor });
+          console.log(this.state);
           break;
 
         case 'logOnLogOff':
@@ -88,7 +89,7 @@ class App extends Component {
     return (
       <div>
         <Nav userCount={this.state.userCount} />
-        <MessageList messages={this.state.messages} color={this.state.userColor} />
+        <MessageList messages={this.state.messages} color={this.state.messages.color} />
         <ChatBar
           username={this.state.currentUser.name}
           color={this.state.userColor}

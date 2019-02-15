@@ -35,6 +35,7 @@ wss.on('connection', (ws) => {
     color: colorArray[n]
   };
   ws.send(JSON.stringify(userColor));
+  console.log(userColor);
 
   const userCount = {
     type: "userCount",
@@ -57,6 +58,7 @@ wss.on('connection', (ws) => {
 
       case 'postMessage':
         const newMessage = message;
+        console.log(newMessage);
         newMessage.type = 'incomingMessage';
         console.log(`User ${newMessage.username} said ${newMessage.content}`);
         wss.broadcast(JSON.stringify(newMessage));
