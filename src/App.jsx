@@ -19,6 +19,7 @@ class App extends Component {
     super(props);
     this.socket = new WebSocket('ws://localhost:3001');
     this.state = {
+      userCount: 0,
       currentUser: {name: ''},
       messages: []
     };
@@ -51,9 +52,17 @@ class App extends Component {
     this.socket.onmessage = (message) => {
       message = JSON.parse(message.data);
 
-      if (message.type === "userCount") {
+      if (message.type === 'userCount') {
+
         const userCount = message.count;
+        const status = this.state.userCount > userCount ? ("left"):("joined");
+        const notification = {
+          type: 'postNotification',
+          content: `A user has ${status} the chat.`
+        };
+        this.socket.send(JSON.stringify(notification));
         this.setState({ userCount });
+
       } else {
         const newMessages = [...this.state.messages, message];
         this.setState({ messages: newMessages });
