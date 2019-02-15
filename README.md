@@ -31,6 +31,7 @@ Users are notified under these circumstances:
 ### Display Number of Users
 Users can see how many other users are logged in in the navbar.
 
+## Screenshot
 ![Screenshot](docs/chatty-screenshot.png)
 
 ## Dependencies
