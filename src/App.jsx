@@ -52,19 +52,24 @@ class App extends Component {
     this.socket.onmessage = (message) => {
       message = JSON.parse(message.data);
 
-      if (message.type === 'userCount') {
-        const userCount = message.count;
-        const status = this.state.userCount > userCount ? ('left'):('joined');
-        const notification = {
-          type: 'postNotification',
-          content: `A user has ${status} the chat.`
-        };
-        this.socket.send(JSON.stringify(notification));
-        this.setState({ userCount });
+      switch(message.type) {
 
-      } else {
-        const newMessages = [...this.state.messages, message];
-        this.setState({ messages: newMessages });
+        case 'userCount':
+          const userCount = message.count;
+          const status = this.state.userCount > userCount ? ('left'):('joined');
+          const notification = {
+            type: 'postNotification',
+            content: `A user has ${status} the chat. ${message.n}`
+          };
+          this.socket.send(JSON.stringify(notification));
+          this.setState({ userCount });
+          break;
+
+        case 'incomingMessage':
+        case 'incomingNotification':
+          const newMessages = [...this.state.messages, message];
+          this.setState({ messages: newMessages });
+          break;
       }
     }
 
