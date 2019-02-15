@@ -74,9 +74,7 @@ class App extends Component {
 
         case 'incomingMessage':
         case 'incomingNotification':
-          if (checkForImg(message)){
-            console.log("image!");
-          }
+          message = checkForImg(message);
           const newMessages = [...this.state.messages, message];
           this.setState({ messages: newMessages });
           break;
