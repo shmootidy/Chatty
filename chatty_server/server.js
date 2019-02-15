@@ -12,6 +12,8 @@ const wss = new SocketServer({ server });
 
 const uuid4 = require('uuid/v4'); // v4 is random, general (I think)
 
+const colorArray = ['#A62639', '#360568', '#700548', '#5B2A86'];
+
 wss.broadcast = function broadcast(data) {
   wss.clients.forEach(client => {
       if (client.readyState === WebSocket.OPEN) {
@@ -22,6 +24,7 @@ wss.broadcast = function broadcast(data) {
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
+
   const userCount = {
     type: "userCount",
     count: wss.clients.size
