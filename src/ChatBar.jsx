@@ -46,7 +46,7 @@ class ChatBar extends Component {
 
   render() {
     return (
-      <footer className="chatbar">
+      <footer className="chatbar" style={{backgroundColor: this.props.userColor }}>
         <input
           className="chatbar-username"
           defaultValue={this.state.username}

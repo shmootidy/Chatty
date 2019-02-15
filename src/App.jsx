@@ -95,7 +95,7 @@ class App extends Component {
         />
         <ChatBar
           username={this.state.currentUser.name}
-          color={this.state.userColor}
+          userColor={this.state.userColor}
 
           addNewMessage={this.handleNewMessage}
           changeUsername={this.handleNewUsername}
